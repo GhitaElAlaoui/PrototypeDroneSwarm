@@ -691,6 +691,156 @@ public class prototype extends javax.swing.JFrame {
 
     private void obstacleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obstacleBtnActionPerformed
         // TODO add your handling code here:
+       numberOfSteps = 23;
+    startingStep = 9;
+    switch(stepN){
+        case 0:
+             textArea1.append("Checking Available Drones...\n");
+             stepN++;
+         break;
+         case 1:textArea3.append("MD[6]: Sending Acknoledgement to Main....\n");
+             stepN++;
+         break;
+         case 2: textArea3.append("MD[7]: Sending Acknoledgement to Main....\n");
+             stepN++;
+         break;
+         case 3: 
+             textArea3.append("MD[8]: Sending Acknoledgement to Main....\n");
+             textArea3.append("MD[9]: Sending Acknoledgement to Main....\n");
+             stepN++;
+         break;
+         case 4:textArea1.append("MD[6] Ack received  (5 seconds)\nMD[7] Ack received  (4 seconds)\nMD[8] Ack received  (6 seconds)\nMD[9] Ack received  (4 seconds)\n");
+             stepN++;
+         break;
+         case 5:textArea1.append("MD[7][8][9] were picked. (5 second average to respond)\n");
+             textArea1.append("Notifying selected Manager Drones...\n");
+             stepN++;
+         break;
+         case 6:
+             textArea3.append("MD[7]: Initializing worker drones (average of 8 seconds needed)\nMD[8]: Initializing worker drones (average of 8 seconds needed)\nMD[9]: Initializing worker drones (average of 7 seconds needed)\n");
+             threadHB.start();
+             threadHBS.start();
+             stepN++;
+         break;
+         case 7:
+         textArea2.append("MD[7]: Generating 20 subtasks (88 seconds)\nMD[8]: Generating 18 subtasks (62 seconds)\nMD[9]: Generating 20 subtasks (92 seconds)\n");
+         stepN++;
+     break;
+     case 8:
+         textArea2.append("MD[7]:Assigning subtask 1-10 to #723WD/#734WD/#754WD/#722WD/#764WD/#774WD/#747WD/#775WD/#754WD/#712WD\n");
+         textArea2.append("MD[8]:Assigning subtask 1-10 to #823WD/#834WD/#854WD/#822WD/#864WD/#874WD/#847WD/#875WD/#854WD/#812WD\n");
+         textArea2.append("MD[9]:Assigning subtask 1-10 to #923WD/#934WD/#954WD/#922WD/#964WD/#974WD/#947WD/#975WD/#954WD/#912WD\n");
+         textArea3.append("Assigning Tasks to worker Drones...\n");
+         
+         stepN++;
+     break;
+     case 9: 
+         textArea6.append("WD[712->722]:Collecting Data... (4.80GB / 7 minutes needed)\n");
+         textArea6.append("WD[812->822]:Collecting Data... (4.23GB / 6 minutes needed)\n");
+         textArea6.append("WD[912->922]:Collecting Data... (4.63GB / 6 minutes needed)\n");
+         threadDC.start();
+         viewPartialBtn.setVisible(true);
+         stepN++;
+     break;
+      case 10: 
+         textArea6.append("#822WD Detecting nearby object...\n");
+         stepN++;
+     break;
+     case 11: 
+         textArea6.append("Identifying object as obstacle...\n");
+         stepN++;
+     break;
+     case 12: 
+         textArea3.append("Receiving Worker drone alert....\n");
+         stepN++;
+     break;
+     case 13:
+         textArea4.append("Detecting higher priority task....\n");
+         stepN++;
+     break;
+     case 14:
+
+         textArea4.append("Saving current tasks state....\n");
+
+         stepN++;
+     break;
+     case 15:
+
+         textArea4.append("Preemting current tasks....\n");
+         stepN++;
+     break;
+     case 16:
+          textArea3.append("Sending redirection command....\n");
+         stepN++;
+     break;
+     case 17:
+         textArea6.append("Receiving redirection command....\n");
+         textArea6.append("Changing direction....\n");
+         stepN++;
+     break;
+     case 18:
+         textArea6.append("Pursuing task execution....\n");
+         stepN++;
+        break;
+     case 19:
+         textArea6.append("Mapping complete....\n");
+         stepN++;
+         
+        break;
+     case 20: 
+         textArea6.append("WD[712->722]:Completed (6 minutes)\n");
+         textArea6.append("WD[812->822]:Completed (5 minutes)\n");
+         textArea6.append("WD[912->22]:Completed {6 minutes)\n");
+         threadDC.stop();
+         stepN++;
+     break;
+      case 21:
+         textArea2.append("MD[7]:Assigning subtask 11-20 to #723WD/#734WD/#754WD/#722WD/#764WD/#774WD/#747WD/#775WD/#754WD/#712WD\n");
+         textArea2.append("MD[8]:Assigning subtask 11-18 to #823WD/#834WD/#854WD/#822WD/#864WD/#874WD/#847WD/#875WD/#854WD/#812WD\n");
+         textArea2.append("MD[9]:Assigning subtask 11-20 to #923WD/#934WD/#954WD/#922WD/#964WD/#974WD/#947WD/#975WD/#954WD/#912WD\n");
+         
+         stepN++;
+     break;
+     case 22: 
+         textArea6.append("WD[712->722]:Collecting Data... (3.80GB / 23 minutes needed)\n");
+         textArea6.append("WD[812->822]:Collecting Data... (1.23GB / 16 minutes needed)\n");
+         textArea6.append("WD[912->922]:Collecting Data... (4.63GB / 23 minutes needed)\n");
+         threadDC.resume();
+         stepN++;
+     break;
+     case 23: 
+         textArea6.append("WD[712->322]:Completed (5 minutes)\n");
+         textArea6.append("WD[812->422]:Completed (4 minutes)\n");
+         textArea6.append("WD[912->222]:Completed (6 minutes)\n");
+         threadDC.stop();
+         stepN++;
+     break;   
+     case 24:  
+             threadHB.stop();
+             threadHBS.stop();
+
+             textArea3.append("Task Completed\n");
+             textArea4.setText(""); textArea4.append("Ordering WD to land in base\nCharging\n");
+             textArea3.append("Sending Result to Main\n");
+          stepN++;
+        break;
+     case 25:
+         textArea1.append("Assembling Final Result...\n");
+          try {
+              TimeUnit.SECONDS.sleep(3);
+          } catch (InterruptedException ex) {
+              Logger.getLogger(prototype.class.getName()).log(Level.SEVERE, null, ex);
+          }  
+          jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/maps/4.jpg"))); 
+         map.setSize(new Dimension(686, 600));
+         map.setVisible(true);
+         stepN++;
+         viewPartialBtn.setVisible(false);
+         
+        break;
+        default:
+         stepN=0; 
+    }
     }//GEN-LAST:event_obstacleBtnActionPerformed
 
     private void lowBateryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowBateryBtnActionPerformed
