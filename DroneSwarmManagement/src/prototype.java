@@ -673,6 +673,15 @@ public class prototype extends javax.swing.JFrame {
              
             default:
                 stepN=0;
+                textArea1.setText("");
+                textArea2.setText("");
+                textArea3.setText("");
+                textArea4.setText("");
+                textArea5.setText("");
+                textArea6.setText("");
+                textArea7.setText("");
+                textArea8.setText("");
+                textArea9.setText("");
             
        }
 
@@ -776,6 +785,15 @@ public class prototype extends javax.swing.JFrame {
              
             default:
                 stepN=0;
+                textArea1.setText("");
+                textArea2.setText("");
+                textArea3.setText("");
+                textArea4.setText("");
+                textArea5.setText("");
+                textArea6.setText("");
+                textArea7.setText("");
+                textArea8.setText("");
+                textArea9.setText("");
        }
     }//GEN-LAST:event_weatherConditionsBtnActionPerformed
 
@@ -934,11 +952,180 @@ public class prototype extends javax.swing.JFrame {
         break;
         default:
          stepN=0; 
+            textArea1.setText("");
+            textArea2.setText("");
+            textArea3.setText("");
+            textArea4.setText("");
+            textArea5.setText("");
+            textArea6.setText("");
+            textArea7.setText("");
+            textArea8.setText("");
+            textArea9.setText("");
+       
     }
     }//GEN-LAST:event_obstacleBtnActionPerformed
 
     private void lowBateryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowBateryBtnActionPerformed
-        // TODO add your handling code here:
+        numberOfSteps = 26;
+        startingStep = 9;
+        switch(stepN){
+            case 0:
+                textArea1.append("Request Received from Controller Manager System...\n");
+                stepN++;
+               break;
+            case 1:
+                textArea1.append("Checking Available Drones...\n");
+                textArea3.append("MD[3]: Sending Acknoledgement to Manager System....\n");
+                textArea3.append("MD[4]: Sending Acknoledgement to Manager System....\n");
+                textArea3.append("MD[2]: Sending Acknoledgement to Manager System....\n");
+                textArea3.append("MD[1]: Sending Acknoledgement to Manager System....\n");
+                stepN++;
+               break;
+            case 2:
+                textArea1.append("MD[3] Ack received  (5 seconds)\nMD[4] Ack received  (4 seconds)\nMD[2] Ack received  (6 seconds)\nMD[1] Ack received  (4 seconds)\n");
+                stepN++;
+            case 3:
+                //Selecting First Drone
+                 textArea1.append("MD[3][4][2] were picked.(5 second average to respond)\n");
+                 stepN++;
+               break;
+            case 4:
+                stepN++;
+                threadHB.start();
+                threadHBS.start();
+                textArea3.append("MD[3]: Initializing worker drones (average of 8 seconds needed)\nMD[4]: Initializing worker drones (average of 8 seconds needed)\nMD[2]: Initializing worker drones (average of 7 seconds needed)\n");
+                textArea2.append("Planning mapping task execution...\n");
+               break;
+            case 5:
+                textArea2.append("MD[2]:Generating 20 subtasks (88 seconds)\n");
+                textArea2.append("MD[4]:Generating 20 subtasks (62 seconds)\n");
+                textArea2.append("MD[3]:Generating 20 subtasks (92 seconds)\n");
+                stepN++;
+               break;
+            case 6:
+                textArea2.append("Assigning Tasks to working Drones...\n");
+                textArea2.append("MD[3]:Assigning subtask 1-10 to #323WD/#334WD/#354WD/#322WD/#364WD/#374WD/#347WD/#375WD/#354WD/#312WD\n");
+                textArea2.append("MD[4]:Assigning subtask 1-10 to #423WD/#434WD/#454WD/#422WD/#464WD/#474WD/#447WD/#475WD/#454WD/#412WD\n");
+                textArea2.append("MD[2]:Assigning subtask 1-10 to #223WD/#234WD/#254WD/#222WD/#264WD/#274WD/#247WD/#275WD/#254WD/#212WD\n");
+                stepN++;
+               break;
+            case 7:
+                textArea6.append("Subtask received from MD\n");
+                textArea6.append("Sending request acknowledgement to MD\n");
+                stepN++;
+               break;
+            case 8:
+                textArea3.append("MD:Aknowledgement from #323WD/#334WD/#354WD/#322WD/#364WD/#374WD/#347WD/#375WD/#354WD/#312WD\n");
+                stepN++;
+               break;
+            case 9: 
+                textArea6.append("WD[312->322]:Collecting Data... (4.80GB / 7 minutes needed)\n");
+                textArea6.append("WD[412->422]:Collecting Data... (4.23GB / 6 minutes needed)\n");
+                textArea6.append("WD[212->222]:Collecting Data... (4.63GB / 6 minutes needed)\n");
+                threadDC.start();
+                viewPartialBtn.setVisible(true);
+                stepN++;
+               break;
+            case 10:                
+                textArea6.append("WD: Low Battery (20%)\n");     
+                textArea6.append("WD: Reporting low battery warning to Manager Drone...\n");
+                stepN++;
+               break;
+            case 11:
+                textArea7.append("Low Battery Report received from WD#234\n");
+                textArea7.append("Low Battery !! 20%\n");
+                stepN++;
+                break;
+            case 12:
+                textArea3.append("[MD2]:Low Battery Report (20%) received from WD#234 (3 seconds)\n");
+                stepN++;
+                break;
+            case 13:
+                textArea4.append("Detecting higher priority task: Low Battery Warning....\n");
+                textArea4.append("Saving current tasks state....\n");
+                stepN++;
+               break;
+            case 14:
+               textArea4.append("Preemting current tasks....\n");
+               stepN++;
+               break;
+            case 15:
+                textArea3.append("Sending request to WD#234 to join base...\n");
+                textArea3.append("Informing manager system: Drone returning to the base...\n");
+                stepN++;
+               break;
+            case 16:                  
+                textArea1.append("WD#234 returning to the base to get charged\n");
+                stepN++;
+               break;
+            case 17:
+                textArea6.append("Preparing return to base...(30 seconds)\n");
+                stepN++;
+                break;
+            case 18:
+                textArea6.append("Landing..\n");
+                stepN++;
+                break;
+            case 19: 
+                textArea6.setText("");
+                textArea2.append("Replanning tasks...\n");
+                textArea2.append("Checking for available drones\n");
+                stepN++;
+                break;
+            case 20:
+                textArea2.append("Assign task to WD#244\n");
+                textArea3.append("Sending re-assigned task to WD#244\n");
+                textArea6.setText(""); 
+                stepN++;
+                break;
+            case 21:
+                textArea6.append("Mapping request received from MD2\n");
+                textArea6.append("Sending acknowledgement to MD\n");
+                textArea3.append("WD#244 Acknowledgement received...\n");
+                stepN++;
+                break;
+            case 22:
+                textArea6.append("Executing task...\n");
+                textArea6.append("WD244 :Collecting Data... (4.63GB / 23 minutes needed)\n");                stepN++;
+               break;
+            case 23:  
+                threadDC.stop();
+                    textArea3.append("Task Completed\n");
+                    textArea3.append("Ordering worker drones to land\n...");
+                    textArea3.append("Sending Result to Manager System\n");
+                    stepN++;
+                    break;
+            case 24:
+                 textArea6.append("Landing...\n");
+                 threadHB.stop();
+                 stepN++;
+               
+               break;
+            case 25:
+                textArea1.append("Assembling Final Result...\n");
+                stepN++;
+                break;
+            case 26:
+                textArea1.append("Map Ready...\n");
+                textArea1.append("Drones Landed");
+                map.setSize(new Dimension(1000, 750));
+                map.setVisible(true);
+                stepN++;
+                viewPartialBtn.setVisible(false);
+               break;
+   
+            default:
+                stepN=0;
+                textArea1.setText("");
+                textArea2.setText("");
+                textArea3.setText("");
+                textArea4.setText("");
+                textArea5.setText("");
+                textArea6.setText("");
+                textArea7.setText("");
+                textArea8.setText("");
+                textArea9.setText("");
+      }
     }//GEN-LAST:event_lowBateryBtnActionPerformed
 
     private void normalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalBtnActionPerformed
@@ -1055,6 +1242,15 @@ public class prototype extends javax.swing.JFrame {
                break;           
             default:
                 stepN=0;
+                textArea1.setText("");
+                textArea2.setText("");
+                textArea3.setText("");
+                textArea4.setText("");
+                textArea5.setText("");
+                textArea6.setText("");
+                textArea7.setText("");
+                textArea8.setText("");
+                textArea9.setText("");
       } 
     }//GEN-LAST:event_normalBtnActionPerformed
 
